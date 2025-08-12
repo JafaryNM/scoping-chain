@@ -32,9 +32,59 @@
 // const firstName = 'Jafary';
 // calcAge(1991);
 
-console.log(me);
-console.log(job);
-console.log(year);
-var me = 'jafary';
-let job = 'Javascript Developer';
-const year = 1995;
+// console.log(me);
+// console.log(job);
+// console.log(year);
+// var me = 'jafary';
+// let job = 'Javascript Developer';
+// const year = 1995;
+
+// console.log(addDecl(1, 3));
+
+// console.log(addExp(1, 2));
+// console.log(arrEx(1, 2));
+
+function addDecl(a, b) {
+  return a + b;
+}
+// Return another error which is not function
+var addExp = function (a, b) {
+  return a + b;
+};
+
+const arrEx = (a, b) => a + b;
+
+// Example of hosting
+
+if (!numProducts) {
+  deleteShoppingCart();
+}
+
+var numProducts = 10;
+function deleteShoppingCart() {
+  console.log('All products deleted');
+}
+
+//  var produce window object
+
+var x = 2;
+let y = 4;
+const z = 8;
+
+if (x === window.x) {
+  console.log('true');
+} else {
+  console.log('false');
+}
+
+if (y === window.y) {
+  console.log('true');
+} else {
+  console.log('false');
+}
+
+if (z === window.z) {
+  console.log('true');
+} else {
+  console.log('false');
+}
