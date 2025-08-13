@@ -137,52 +137,99 @@
 
 // Different betwen Arrow and Normal
 // Problem for arrow fn
-var firstName = 'Jafary global';
-const jonas = {
-  firstName: 'jafary',
-  year: 1995,
-  calcAge: function () {
-    console.log(this);
-    console.log(2030 - this.year);
-    const self = this;
-    // Expressions produce undefined this
-    // const isMellinium = function () {
-    //   console.log(this.year >= 1981 && this.year < 1996);
-    // };
+// var firstName = 'Jafary global';
+// const jonas = {
+//   firstName: 'jafary',
+//   year: 1995,
+//   calcAge: function () {
+//     console.log(this);
+//     console.log(2030 - this.year);
+//     const self = this;
+//     // Expressions produce undefined this
+//     // const isMellinium = function () {
+//     //   console.log(this.year >= 1981 && this.year < 1996);
+//     // };
 
-    // Solution 1
-    // const isMellinium = function () {
-    //   console.log(self.year >= 1981 && self.year < 1996);
-    // };
-    // isMellinium();
+//     // Solution 1
+//     // const isMellinium = function () {
+//     //   console.log(self.year >= 1981 && self.year < 1996);
+//     // };
+//     // isMellinium();
 
-    const isMellinium = () => {
-      console.log(this.year >= 1981 && this.year < 1996);
-    };
-    isMellinium();
-  },
+//     const isMellinium = () => {
+//       console.log(this.year >= 1981 && this.year < 1996);
+//     };
+//     isMellinium();
+//   },
 
-  // Solution 2
+//   // Solution 2
 
-  greet: () => console.log(`Hey there ${this.firstName}`),
+//   greet: () => console.log(`Hey there ${this.firstName}`),
+// };
+
+// jonas.greet();
+// jonas.calcAge();
+
+// // function expressions
+// // Receive arguments as an arrays
+// const addExp = function (a, b) {
+//   console.log(arguments);
+//   return a + b;
+// };
+
+// addExp(2, 3, 6, 7);
+
+// // Arguments is not existing
+// const addArrow = (a, b) => {
+//   console.log(arguments);
+//   return a + b;
+// };
+
+// addArrow(2, 3, 4, 5);
+
+const jessica1 = {
+  firstName: 'Jessica',
+  lastName: 'Williams',
+  age: 27,
 };
 
-jonas.greet();
-jonas.calcAge();
+function marryPerson(originalPerson, newLastName) {
+  originalPerson.lastName = newLastName;
+  return originalPerson;
+}
 
-// function expressions
-// Receive arguments as an arrays
-const addExp = function (a, b) {
-  console.log(arguments);
-  return a + b;
+// const marriedPerson = marryPerson(jessica1, Devic);
+
+// Applying borrow object techniques
+
+const marriedJessica = jessica1;
+marriedJessica.lastName = 'John';
+
+// Point same variable in heap  output lastname Willaam == John
+
+console.log('Before', jessica1);
+console.log('After', marriedJessica);
+
+// Implement spread operators
+
+const jessica = {
+  firstName: 'Jessica',
+  lastName: 'John',
+  age: 30,
+  family: ['Jophrey', 'Julian'],
 };
 
-addExp(2, 3, 6, 7);
+const jessicaCopy = { ...jessica };
+jessicaCopy.lastName = 'Juma';
+jessicaCopy.family.push('Mary');
+jessicaCopy.family.push('Johnson');
+console.log('Jessica Original', jessica);
+console.log('Jossica Copy', jessicaCopy);
+console.log(jessica, jessicaCopy);
 
-// Arguments is not existing
-const addArrow = (a, b) => {
-  console.log(arguments);
-  return a + b;
-};
-
-addArrow(2, 3, 4, 5);
+// Deep clone objects
+const jessicaClone = structuredClone(jessica);
+jessicaClone.family.push('JaffaryClone');
+jessicaClone.family.push('John Clone');
+console.log('Jessica Original', jessica);
+console.log('Jessica Clone', jessicaClone);
