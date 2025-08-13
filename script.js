@@ -44,47 +44,93 @@
 // console.log(addExp(1, 2));
 // console.log(arrEx(1, 2));
 
-function addDecl(a, b) {
-  return a + b;
-}
-// Return another error which is not function
-var addExp = function (a, b) {
-  return a + b;
+// function addDecl(a, b) {
+//   return a + b;
+// }
+// // Return another error which is not function
+// var addExp = function (a, b) {
+//   return a + b;
+// };
+
+// const arrEx = (a, b) => a + b;
+
+// // Example of hosting
+
+// if (!numProducts) {
+//   deleteShoppingCart();
+// }
+
+// var numProducts = 10;
+// function deleteShoppingCart() {
+//   console.log('All products deleted');
+// }
+
+// //  var produce window object
+
+// var x = 2;
+// let y = 4;
+// const z = 8;
+
+// if (x === window.x) {
+//   console.log('true');
+// } else {
+//   console.log('false');
+// }
+
+// if (y === window.y) {
+//   console.log('true');
+// } else {
+//   console.log('false');
+// }
+
+// if (z === window.z) {
+//   console.log('true');
+// } else {
+//   console.log('false');
+// }
+
+console.log(this);
+
+// this keyword in normal return undefined
+const calcAge = function (birthYear) {
+  const age = 2030 - birthYear;
+  console.log(age);
+  console.log(this);
 };
 
-const arrEx = (a, b) => a + b;
+calcAge(1995);
 
-// Example of hosting
+// This keyword in arrow function
 
-if (!numProducts) {
-  deleteShoppingCart();
-}
+const calcAgeArrow = birthYear => {
+  const age = 2030 - birthYear;
+  console.log(age);
+  console.log(this);
+};
 
-var numProducts = 10;
-function deleteShoppingCart() {
-  console.log('All products deleted');
-}
+calcAgeArrow(1995);
 
-//  var produce window object
+// This keyword inside object methods
 
-var x = 2;
-let y = 4;
-const z = 8;
+const jonas = {
+  firstName: 'jafary',
+  year: 1995,
+  calcAge: function () {
+    console.log(this);
+    console.log(2030 - this.year);
+  },
+};
 
-if (x === window.x) {
-  console.log('true');
-} else {
-  console.log('false');
-}
+// Method borrowing
 
-if (y === window.y) {
-  console.log('true');
-} else {
-  console.log('false');
-}
+const matilda = {
+  firstName: 'Matilda',
+  year: 2000,
+};
 
-if (z === window.z) {
-  console.log('true');
-} else {
-  console.log('false');
-}
+// Method borrowing
+
+matilda.calcAge = jonas.calcAge;
+
+matilda.calcAge();
+jonas.calcAge;
