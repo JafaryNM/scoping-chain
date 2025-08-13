@@ -89,48 +89,100 @@
 //   console.log('false');
 // }
 
-console.log(this);
+// console.log(this);
 
-// this keyword in normal return undefined
-const calcAge = function (birthYear) {
-  const age = 2030 - birthYear;
-  console.log(age);
-  console.log(this);
-};
+// // this keyword in normal return undefined
+// const calcAge = function (birthYear) {
+//   const age = 2030 - birthYear;
+//   console.log(age);
+//   console.log(this);
+// };
 
-calcAge(1995);
+// calcAge(1995);
 
-// This keyword in arrow function
+// // This keyword in arrow function
 
-const calcAgeArrow = birthYear => {
-  const age = 2030 - birthYear;
-  console.log(age);
-  console.log(this);
-};
+// const calcAgeArrow = birthYear => {
+//   const age = 2030 - birthYear;
+//   console.log(age);
+//   console.log(this);
+// };
 
-calcAgeArrow(1995);
+// calcAgeArrow(1995);
 
-// This keyword inside object methods
+// // This keyword inside object methods
 
+// const jonas = {
+//   firstName: 'jafary',
+//   year: 1995,
+//   calcAge: function () {
+//     console.log(this);
+//     console.log(2030 - this.year);
+//   },
+// };
+
+// // Method borrowing
+
+// const matilda = {
+//   firstName: 'Matilda',
+//   year: 2000,
+// };
+
+// // Method borrowing
+
+// matilda.calcAge = jonas.calcAge;
+
+// matilda.calcAge();
+// jonas.calcAge;
+
+// Different betwen Arrow and Normal
+// Problem for arrow fn
+var firstName = 'Jafary global';
 const jonas = {
   firstName: 'jafary',
   year: 1995,
   calcAge: function () {
     console.log(this);
     console.log(2030 - this.year);
+    const self = this;
+    // Expressions produce undefined this
+    // const isMellinium = function () {
+    //   console.log(this.year >= 1981 && this.year < 1996);
+    // };
+
+    // Solution 1
+    // const isMellinium = function () {
+    //   console.log(self.year >= 1981 && self.year < 1996);
+    // };
+    // isMellinium();
+
+    const isMellinium = () => {
+      console.log(this.year >= 1981 && this.year < 1996);
+    };
+    isMellinium();
   },
+
+  // Solution 2
+
+  greet: () => console.log(`Hey there ${this.firstName}`),
 };
 
-// Method borrowing
+jonas.greet();
+jonas.calcAge();
 
-const matilda = {
-  firstName: 'Matilda',
-  year: 2000,
+// function expressions
+// Receive arguments as an arrays
+const addExp = function (a, b) {
+  console.log(arguments);
+  return a + b;
 };
 
-// Method borrowing
+addExp(2, 3, 6, 7);
 
-matilda.calcAge = jonas.calcAge;
+// Arguments is not existing
+const addArrow = (a, b) => {
+  console.log(arguments);
+  return a + b;
+};
 
-matilda.calcAge();
-jonas.calcAge;
+addArrow(2, 3, 4, 5);
